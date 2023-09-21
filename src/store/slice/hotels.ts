@@ -1,41 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { AppState } from './store';
+import { createAction, createSlice } from '@reduxjs/toolkit';
+import { AppState } from '../store';
 import { HYDRATE } from 'next-redux-wrapper';
+import initialHotelsState from '../state/hotels';
 
-// Type for our state
-export interface AuthState {
-    authState: boolean;
-}
+const hydrate = createAction<AppState>(HYDRATE);
 
-// Initial state
-const initialState: AuthState = {
-    authState: false,
-};
-
-// Actual Slice
-export const authSlice = createSlice({
-    name: 'auth',
-    initialState,
+export const hotelsSlice = createSlice({
+    name: 'hotels',
+    initialState: initialHotelsState,
     reducers: {
-        // Action to set the authentication status
-        setAuthState(state, action) {
-            state.authState = action.payload;
+        setHotelDataState(state, action) {
+            state.data = action.payload;
         },
     },
-
-    // Special reducer for hydrating the state. Special case for next-redux-wrapper
-    extraReducers: {
-        [HYDRATE]: (state, action) => {
-            return {
-                ...state,
-                ...action.payload.auth,
-            };
-        },
+    extraReducers: (builder) => {
+        builder.addCase(hydrate, (state, action) => ({
+            ...state,
+            ...action.payload[hotelsSlice.name],
+        }));
     },
 });
 
-export const { setAuthState } = authSlice.actions;
+export const { setHotelDataState } = hotelsSlice.actions;
 
-export const selectAuthState = (state: AppState) => state.auth.authState;
+export const selectHotelState = (state: AppState) => state.hotels.data;
 
-export default authSlice.reducer;
+export default hotelsSlice.reducer;

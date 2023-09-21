@@ -1,17 +1,15 @@
-import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
-import { hotelSlice } from './slice/hotels';
-import { createWrapper } from 'next-redux-wrapper';
+import { configureStore, Action } from '@reduxjs/toolkit';
+import { hotelsSlice } from './slice/hotels';
+import { setupListeners } from '@reduxjs/toolkit/dist/query';
 
-const makeStore = () =>
-    configureStore({
-        reducer: {
-            [hotelSlice.name]: hotelSlice.reducer,
-        },
-        devTools: true,
-    });
+export const store = configureStore({
+    reducer: {
+        [hotelsSlice.name]: hotelsSlice.reducer,
+    },
+    devTools: process.env.NODE_ENV !== 'production',
+});
 
-export type AppStore = ReturnType<typeof makeStore>;
-export type AppState = ReturnType<AppStore['getState']>;
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, AppState, unknown, Action>;
+setupListeners(store.dispatch);
 
-export const wrapper = createWrapper<AppStore>(makeStore);
+export type AppState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
