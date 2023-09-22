@@ -1,10 +1,20 @@
+'use client';
 import { FC } from 'react';
+import Sidebar from '@/components/Sidebar';
+import CardList from '@/components/CardList';
 
 const Home: FC = () => {
     return (
-        <main className="flex min-h-screen flex-col items-center justify-between p-24">
-            <p>Home</p>
-        </main>
+        <div className="container mx-auto">
+            <main className="flex min-h-screen flex-row items-start py-16">
+                <div className="flex flex-col w-1/4 items-center">
+                    <Sidebar />
+                </div>
+                <div className="flex flex-col w-3/4 gap-y-6 items-center">
+                    <CardList />
+                </div>
+            </main>
+        </div>
     );
 };
 
