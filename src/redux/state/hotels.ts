@@ -1,3 +1,5 @@
+import { HotelOrder } from '@/enums/hotels';
+
 const initialHotelsState = {
     data: [
         {
@@ -16,6 +18,7 @@ const initialHotelsState = {
             departureLocation: 'East Midlands',
             costInPennies: 113650,
             description: `The Iberostar grand Salome has an exceptional location in the south of Tenerife, overlooking the Atlantic Ocean. It is situated between the Golf del Sur and the Amarillo Golf courses, and is an ideal hotel for families, couples and groups who are looking for a holiday full of sport, sun and sea.`,
+            image: 'hotel-image-1.png',
         },
         {
             name: 'Aguamarina Golf Hotel',
@@ -33,6 +36,7 @@ const initialHotelsState = {
             departureLocation: 'Liverpool',
             costInPennies: 69680,
             description: `The Aguamarina Golf Hotel has an exceptional location in the south of Tenerife, overlooking the Atlantic Ocean. It is situated between the Golf del Sur and the Amarillo Golf courses, and is an ideal hotel for families, couples and groups who are looking for a holiday full of sport, sun and sea.`,
+            image: 'hotel-image-2.png',
         },
         {
             name: 'Las Piramides Resort',
@@ -50,8 +54,10 @@ const initialHotelsState = {
             departureLocation: 'Manchester',
             costInPennies: 49999,
             description: `The Aguamarina Golf Hotel has an exceptional location in the south of Tenerife, overlooking the Atlantic Ocean. It is situated between the Golf del Sur and the Amarillo Golf courses, and is an ideal hotel for families, couples and groups who are looking for a holiday full of sport, sun and sea.`,
+            image: 'hotel-image-3.png',
         },
     ],
+    order: HotelOrder.Alphabetical,
 };
 
 export default initialHotelsState;

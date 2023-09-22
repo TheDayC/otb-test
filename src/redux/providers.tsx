@@ -1,14 +1,14 @@
 'use client';
 import { FC, ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { store } from '@/store/store';
+import { store } from './store';
 
-interface ProvidersProps {
+interface ReduxProvidersProps {
     children: ReactNode;
 }
 
-const Providers: FC<ProvidersProps> = ({ children, ...rest }) => (
+const ReduxProvider: FC<ReduxProvidersProps> = ({ children }) => (
     <Provider store={store}>{children}</Provider>
 );
 
-export default Providers;
+export default ReduxProvider;
