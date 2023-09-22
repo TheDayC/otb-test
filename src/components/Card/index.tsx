@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, Fragment, useState } from 'react';
 import Image from 'next/image';
 import { AiFillStar } from 'react-icons/ai';
 import { BsArrowDownCircle, BsArrowRightCircle } from 'react-icons/bs';
@@ -40,7 +40,7 @@ const Card: FC<CardProps> = ({
     const adultSuffix = adults === 1 ? 'Adult' : 'Adults';
     const childSuffix = children === 1 ? 'Child' : 'Children';
     const infantSuffix = infants === 1 ? 'Infant' : 'Infants';
-    const descVisibility = isDescExpanded ? 'visible' : 'collapse';
+    const descVisibility = isDescExpanded ? 'visible' : 'hidden';
 
     const handleDescClick = () => {
         setIsDescExpanded(!isDescExpanded);
@@ -116,8 +116,12 @@ const Card: FC<CardProps> = ({
                 </div>
             </div>
             <div className={`${descVisibility} text-gray-500 text-sm p-4`}>
-                <h3 className="text-blue-900 font-semibold mb-2">Overview</h3>
-                <p>{description}</p>
+                {isDescExpanded && (
+                    <Fragment>
+                        <h3 className="text-blue-900 font-semibold mb-2">Overview</h3>
+                        <p>{description}</p>
+                    </Fragment>
+                )}
             </div>
         </div>
     );

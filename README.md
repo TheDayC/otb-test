@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# OTB Test
+A small card display app with some sort buttons. I chose to write this in NextJS with Typescript and Redux, storing the hotel data in the redux initial state.
 
-## Getting Started
+## Dependencies
+Ensure you have Node 18.17.1 (LTS at time of writing) installed.
 
-First, run the development server:
-
+Run the install command
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Boot the project
+To run the development server write the following command into your CLI while targeting the repo directory:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the app.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Testing the project
+To run tests execute:
+```bash
+npm run test
+```
 
-## Learn More
+## Notes and deviations
+I made use of TailwindCSS here and the images provided were just static PNGs so finding sizes was difficult. As such I took a general approach to match sizing and coloring as closely as possible, leveraging Tailwind's internal tooling to get an almost match.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+I didn't use the background image, instead favouring a simpler more modern background gradient which all apps should prefer over images with the retirement of older Internet Explorer browsers.
