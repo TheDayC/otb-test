@@ -13,7 +13,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en">
-            <body className={inter.className}>
+            <body
+                className={`${inter.className} bg-gradient-to-b from-sky-400 to-white text-gray-600 bg-size bg-top bg-no-repeat`}
+            >
                 <ReduxProviders>{children}</ReduxProviders>
             </body>
         </html>
