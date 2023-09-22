@@ -34,7 +34,7 @@ const OrderButton: FC<OrderButtonProps> = ({ type }) => {
 
     return (
         <button
-            className="flex flex-row items-center justify-between w-full bg-white text-blue-900 p-2"
+            className="flex flex-row items-center justify-between w-full bg-white text-blue-900 p-2 hover:bg-blue-900 hover:text-white p-2"
             onClick={handleClick}
         >
             {title} <Icon type={type} />
