@@ -1,6 +1,7 @@
 import { FC, useState } from 'react';
 import Image from 'next/image';
 import { AiFillStar } from 'react-icons/ai';
+import { BsArrowDownCircle, BsArrowRightCircle } from 'react-icons/bs';
 import { DateTime } from 'luxon';
 
 interface Guests {
@@ -34,28 +35,48 @@ const Card: FC<CardProps> = ({
     description,
     image,
 }) => {
-    const [shouldReadMore, setShouldReadMore] = useState(false);
+    const [isDescExpanded, setIsDescExpanded] = useState(false);
     const { adults, children, infants } = guests;
     const adultSuffix = adults === 1 ? 'Adult' : 'Adults';
     const childSuffix = children === 1 ? 'Child' : 'Children';
     const infantSuffix = infants === 1 ? 'Infant' : 'Infants';
-    const descVisibility = shouldReadMore ? 'collapse' : 'visible';
+    const descVisibility = isDescExpanded ? 'visible' : 'collapse';
+
+    const handleDescClick = () => {
+        setIsDescExpanded(!isDescExpanded);
+    };
 
     return (
-        <div className="flex flex-col w-full bg-white max-w-2xl">
+        <div className="flex flex-col w-full bg-white max-w-3xl">
             <div className="flex flex-row w-full">
                 <div className="relative">
-                    <Image src={`/${image}`} alt={`Photo of ${name}`} width={494} height={277} />
+                    <Image
+                        src={`/${image}`}
+                        alt={`Photo of ${name}`}
+                        width={494}
+                        height={277}
+                        className="relative"
+                    />
+
+                    <div className="absolute bottom-0 left-0">
+                        <button
+                            className="bg-white text-blue-900 text-base p-2 flex flex-row items-center gap-2"
+                            onClick={handleDescClick}
+                        >
+                            Read {isDescExpanded ? 'less' : 'more'} about this hotel{' '}
+                            {isDescExpanded ? <BsArrowDownCircle /> : <BsArrowRightCircle />}
+                        </button>
+                    </div>
                 </div>
-                <div className="flex flex-col text-gray-600 p-4 gap-y-2 text-xs">
+                <div className="flex flex-col text-gray-600 p-4 text-xs text-center flex-grow justify-between">
                     <h3 className="text-base text-blue-900 font-semibold">{name}</h3>
                     <h4 className="text-gray-400">{location}</h4>
-                    <div className="flex flex-row">
-                        {Array.from({ length: rating }).map(() => (
-                            <AiFillStar className="text-yellow-300 w-4 h-4" key="star" />
+                    <div className="flex flex-row justify-center">
+                        {Array.from({ length: rating }).map((val, i) => (
+                            <AiFillStar className="text-yellow-300 w-4 h-4" key={`star-${i}`} />
                         ))}
                     </div>
-                    <div className="flex flex-row gap-x-1">
+                    <div className="flex flex-row gap-x-1 justify-center">
                         {adults > 0 && (
                             <p>
                                 <b>{adults}</b> {adultSuffix}
@@ -93,7 +114,6 @@ const Card: FC<CardProps> = ({
                         </div>
                     </button>
                 </div>
-                <div></div>
             </div>
             <div className={`${descVisibility} text-gray-500 text-sm p-4`}>
                 <h3 className="text-blue-900 font-semibold mb-2">Overview</h3>
