@@ -7,13 +7,13 @@ export const hotelsSlice = createSlice({
     name: 'hotels',
     initialState: initialHotelsState,
     reducers: {
-        setHotelDataState(state, action) {
-            state.data = action.payload;
+        setHotelOrder(state, action) {
+            state.order = action.payload;
         },
     },
 });
 
-export const { setHotelDataState } = hotelsSlice.actions;
+export const { setHotelOrder } = hotelsSlice.actions;
 
 export const selectHotelState = (state: AppState) => state.hotels;
 
