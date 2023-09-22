@@ -5,7 +5,6 @@ import { HotelOrder } from '@/enums/hotels';
 import { orderButtonText } from '@/utils/sort';
 import { setHotelOrder } from '@/redux/slice/hotels';
 import selector from './selector';
-import { BsSortAlphaDown } from 'react-icons/bs';
 import Icon from './icon';
 
 interface OrderButtonProps {
@@ -17,8 +16,6 @@ const OrderButton: FC<OrderButtonProps> = ({ type }) => {
     const title = orderButtonText(type);
     const dipsatch = useDispatch();
     const isSelected = order === type;
-    const bgColor = isSelected ? 'blue-800' : 'white';
-    const textColor = isSelected ? 'white' : 'blue-800';
 
     const handleClick = () => {
         dipsatch(setHotelOrder(type));
