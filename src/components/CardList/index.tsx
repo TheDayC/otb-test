@@ -10,8 +10,8 @@ const CardList: FC = () => {
 
     return (
         <Fragment>
-            {hotels.map((hotel) => (
-                <Card {...hotel} key="card" />
+            {hotels.map((hotel, i) => (
+                <Card {...hotel} key={`card-${i}`} />
             ))}
         </Fragment>
     );

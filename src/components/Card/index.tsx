@@ -42,6 +42,10 @@ const Card: FC<CardProps> = ({
     const infantSuffix = infants === 1 ? 'Infant' : 'Infants';
     const descVisibility = isDescExpanded ? 'visible' : 'collapse';
 
+    const handleDescClick = () => {
+        setIsDescExpanded(!isDescExpanded);
+    };
+
     return (
         <div className="flex flex-col w-full bg-white max-w-3xl">
             <div className="flex flex-row w-full">
@@ -55,7 +59,10 @@ const Card: FC<CardProps> = ({
                     />
 
                     <div className="absolute bottom-0 left-0">
-                        <button className="bg-white text-blue-900 text-base p-2 flex flex-row items-center gap-2">
+                        <button
+                            className="bg-white text-blue-900 text-base p-2 flex flex-row items-center gap-2"
+                            onClick={handleDescClick}
+                        >
                             Read {isDescExpanded ? 'less' : 'more'} about this hotel{' '}
                             {isDescExpanded ? <BsArrowDownCircle /> : <BsArrowRightCircle />}
                         </button>
@@ -65,8 +72,8 @@ const Card: FC<CardProps> = ({
                     <h3 className="text-base text-blue-900 font-semibold">{name}</h3>
                     <h4 className="text-gray-400">{location}</h4>
                     <div className="flex flex-row justify-center">
-                        {Array.from({ length: rating }).map(() => (
-                            <AiFillStar className="text-yellow-300 w-4 h-4" key="star" />
+                        {Array.from({ length: rating }).map((val, i) => (
+                            <AiFillStar className="text-yellow-300 w-4 h-4" key={`star-${i}`} />
                         ))}
                     </div>
                     <div className="flex flex-row gap-x-1 justify-center">
