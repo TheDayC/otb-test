@@ -2,14 +2,15 @@
 
 import { HotelOrder } from '@/enums/hotels';
 import OrderButton from './OrderButton';
+import { Fragment } from 'react';
 
 const Sidebar: React.FC = () => {
     return (
-        <div className="flex flex-col w-full">
+        <Fragment>
             <OrderButton type={HotelOrder.Alphabetical} />
             <OrderButton type={HotelOrder.Price} />
             <OrderButton type={HotelOrder.Rating} />
-        </div>
+        </Fragment>
     );
 };
 
